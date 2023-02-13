@@ -1,13 +1,13 @@
 # FreeLabor481ColorSwapper
 
-# Team Name: Free Labor
+## Team Name: Free Labor
 
 We are creating a brick palette analyzer tool for https://brickmaniac.com/
 
-# Resources:
+## Resources:
 [Drive Link](https://drive.google.com/drive/u/2/folders/1K710zoNXyk16zgeNn4rHGWfX0nVB6qtu)
 
-# Team Members:
+## Team Members:
 
 ### [Daniel Thompson](https://github.com/danthomps1999)
 Senior in final semester (LORD willing). Working as an Associate Software Developer at Auto-Owners Insurance in HR-Systems.
