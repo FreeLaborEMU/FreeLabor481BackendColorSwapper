@@ -1,6 +1,6 @@
 # FreeLabor481ColorSwapper
 
-## Team Name: Free Labor
+Team Name: Free Labor
 
 We are creating a brick palette analyzer tool for https://brickmaniac.com/
 
