@@ -21,7 +21,7 @@ public class ImgManager {
 
 	private BufferedImage originalImg; //this is the orignial img
 	private BufferedImage newImg; // this is the new img
-	private int[] collorPallet;//this is brickmaniacs colorpallet
+	private Color[] colorPallet;//this is brickmaniacs colorpallet
 			
 	//size of [][] should be set by the size of originalImg
 	private Color[][] OriginalColorArrayLocations; // this is the array that hold the RGB # values for original photo
@@ -31,11 +31,13 @@ public class ImgManager {
 	//this class will handle everything related to altering the img
 	
 	//normal constructor will be called by website Connector after it gets the img
-	public ImgManager( BufferedImage original, int[] collorPallet) {
+	public ImgManager( BufferedImage original, Color[] pallet) {
 		
-		int[] pallet=collorPallet;
-		BufferedImage originalImg= original;
+		colorPallet=pallet;
+		originalImg= original;
 		OriginalColorArrayLocations=getColorArray(originalImg);
+		newColorArrayLocations=makeNewColorArrayLocations(colorPallet, OriginalColorArrayLocations);
+		newImg=makeNewImg(originalImg, newColorArrayLocations);
 		
 	}
 	//default construtor for testing I added the first low res photo I found on google
@@ -72,6 +74,83 @@ public class ImgManager {
 		
 		return returnArray;
 	}
+	
+	//this method will get the color Array for the new img to be aplied to a clone of the original img makeing the new img
+	private Color[][] makeNewColorArrayLocations(Color[] pallet, Color[][] originalImgArray) {
+		//make new array same size as old one
+		Color[][] newImgArray=originalImgArray;
+		
+		
+		
+		//loop for originalImgArray
+		for(int i=0; i<originalImgArray[0].length; i++) {
+		for(int j=0; j<originalImgArray.length; j++) {
+		
+		
+			//infinitly large distance reset before going into pallet array
+			double leastDistance=1000000000;
+			int    leastDistanceLocation=-1;
+			
+			//loop for for pallet	
+		for(int z=0; z<pallet.length; z++) {		
+			
+		
+			if(leastDistance>getColorDistance(pallet[z],originalImgArray[i][j] )) {
+				leastDistance=getColorDistance(pallet[z],originalImgArray[i][j] );
+				leastDistanceLocation=z;
+			}
+			
+			
+		}
+		//at end of looping pallet put the found least distance color in the new arrray
+		newImgArray[i][j]=pallet[leastDistanceLocation];
+		}		
+		}
+		
+		
+		
+		return newImgArray;
+	}
+	
+	//this is a helper method for makenewcolorarraylocations it just aplys the formula and returns the distance given the two colors
+	private double getColorDistance(Color imgColor, Color palletColor) {
+		
+		int imgRed=imgColor.getRed();
+		int imgBlue=imgColor.getBlue();
+		int imgGreen=imgColor.getGreen();
+		
+		int palRed=palletColor.getRed();
+		int palBlue=palletColor.getBlue();
+		int palGreen=palletColor.getGreen();
+		
+		double distance=-1;
+		
+		// big plug and chug formula
+		distance= Math.sqrt(((palRed-imgRed)*(palRed-imgRed))+((palGreen-imgGreen)*(palGreen-imgGreen))+((palBlue-imgBlue)*(palBlue-imgBlue)));
+		
+		return distance;
+	}
+	
+	
+	//makes the new img given clone of origina img and the new collor pallet array locations
+	private BufferedImage makeNewImg(BufferedImage clone, Color[][]newPallet) {
+		
+		
+		for(int i=0; i<newPallet[0].length;i++  ) {
+		for(int j=0; j<newPallet.length;j++  ) {
+		
+			clone.setRGB(newPallet[i][j].getRed(),newPallet[i][j].getGreen(),newPallet[i][j].getBlue());
+			
+		}	
+		}
+		
+		
+		
+		return clone;
+	} 
+	
+	
+	
 	
 	
 	
