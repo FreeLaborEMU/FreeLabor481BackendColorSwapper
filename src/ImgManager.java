@@ -147,6 +147,66 @@ public class ImgManager {
 		
 		
 		return clone;
+	}
+	/**
+	 * @return the originalImg
+	 */
+	public BufferedImage getOriginalImg() {
+		return originalImg;
+	}
+	/**
+	 * @param originalImg the originalImg to set
+	 */
+	public void setOriginalImg(BufferedImage originalImg) {
+		this.originalImg = originalImg;
+	}
+	/**
+	 * @return the newImg
+	 */
+	public BufferedImage getNewImg() {
+		return newImg;
+	}
+	/**
+	 * @param newImg the newImg to set
+	 */
+	public void setNewImg(BufferedImage newImg) {
+		this.newImg = newImg;
+	}
+	/**
+	 * @return the colorPallet
+	 */
+	public Color[] getColorPallet() {
+		return colorPallet;
+	}
+	/**
+	 * @param colorPallet the colorPallet to set
+	 */
+	public void setColorPallet(Color[] colorPallet) {
+		this.colorPallet = colorPallet;
+	}
+	/**
+	 * @return the originalColorArrayLocations
+	 */
+	public Color[][] getOriginalColorArrayLocations() {
+		return OriginalColorArrayLocations;
+	}
+	/**
+	 * @param originalColorArrayLocations the originalColorArrayLocations to set
+	 */
+	public void setOriginalColorArrayLocations(Color[][] originalColorArrayLocations) {
+		OriginalColorArrayLocations = originalColorArrayLocations;
+	}
+	/**
+	 * @return the newColorArrayLocations
+	 */
+	public Color[][] getNewColorArrayLocations() {
+		return newColorArrayLocations;
+	}
+	/**
+	 * @param newColorArrayLocations the newColorArrayLocations to set
+	 */
+	public void setNewColorArrayLocations(Color[][] newColorArrayLocations) {
+		this.newColorArrayLocations = newColorArrayLocations;
 	} 
 	
 	
