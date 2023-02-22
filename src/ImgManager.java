@@ -1,45 +1,285 @@
-import java.awt.Image;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 
+
+/*
+ * Note to self
+ * TO send the data to the front end dump everything in Color object class
+ * then use the get methods to create a dummy object
+ * this dummy object should have the paramaters
+ * R G B just as values stored in the object
+ * because the front end recives objects as generic objects with no accses to its methods but acceses to its data values
+ */
 
 
 public class ImgManager {
+	
+	
+	
+	
+	
 
-	private BufferedImage originalImg; //this is the orignial img
-	private BufferedImage newImg; // this is the new img
-	private int[] collorPallet;//this is brickmaniacs colorpallet
-			
-	//size of [][] should be set by the size of originalImg
-	private int[][] OriginalColorArrayLocations; // this is the array that hold the RGB # values for original photo
-	private int[][] newColorArrayLocations; // this is the array that hold the RGB # values for new photo
-	
-	
-	//this class will handle everything related to altering the img
-	
-	//normal constructor will be called by website Connector after it gets the img
-	public ImgManager( BufferedImage original, int[] collorPallet) {
-		
-		int[] pallet=collorPallet;
-		BufferedImage originalImg= original;
-		
-	}
-	//default construtor for testing I added the first low res photo I found on google
-	//also shows example of how BufferdImage wants its information
-	public ImgManager() {
-		File file = new File("Doomguy.jpg");
-		try {
-			BufferedImage originalImg=ImageIO.read(file);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-	}
-	
-	
+    public static void main(String[] args) {
+        ImgManager manager = new ImgManager();
+        Color[][] palleteFromOriginal = manager.getColorArray(manager.originalImg);
+        Color[] palleteFromWebsite = new Color[3];
+        palleteFromWebsite[0] = new Color(0, 0, 255);
+        palleteFromWebsite[1] = new Color(0, 255, 0);
+        palleteFromWebsite[2] = new Color(255, 0, 0);
+        Color[][] palleteForClone = manager.makeNewColorArrayLocations(palleteFromWebsite, palleteFromOriginal);
+        BufferedImage clone = manager.originalImg;
+        BufferedImage newImg = manager.makeNewImg(clone, palleteForClone);
+        
+        displayImage(clone);
+        displayImage(newImg);
+        displayImage(manager.originalImg);
+        
+    }
+    
+    //stole this from http://www.java2s.com/example/java/2d-graphics/display-bufferedimage.html
+    //in order to test displaying the img's
+        public static void displayImage(final BufferedImage image) {
+            displayImage("test", image);
+        }
+
+        public static void displayImage(final String windowTitle,
+                final BufferedImage image) {
+            new JFrame(windowTitle) {
+                {
+                    final JLabel label = new JLabel("", new ImageIcon(image), 0);
+                    add(label);
+                    pack();
+                    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    setVisible(true);
+                }
+            };
+        }
+    //end of stuff from java2s
+    
+
+    private BufferedImage originalImg; //this is the orignial img
+    private BufferedImage newImg; // this is the new img
+    private Color[] colorPallet;//this is brickmaniacs colorpallet
+
+    //size of [][] should be set by the size of originalImg
+    private Color[][] OriginalColorArrayLocations; // this is the array that hold the RGB # values for original photo
+    private Color[][] newColorArrayLocations; // this is the array that hold the RGB # values for new photo
+
+
+    //this class will handle everything related to altering the img
+
+    //normal constructor will be called by website Connector after it gets the img
+    public ImgManager(BufferedImage original, Color[] pallet) {
+
+        colorPallet = pallet;
+        originalImg = original;
+        OriginalColorArrayLocations = getColorArray(originalImg);
+        newColorArrayLocations = makeNewColorArrayLocations(colorPallet, OriginalColorArrayLocations);
+        newImg = makeNewImg(originalImg, newColorArrayLocations);
+
+    }
+
+    //default construtor for testing I added the first low res photo I found on google
+    //also shows example of how BufferdImage wants its information
+    public ImgManager() {
+        File file = new File("C:\\Users\\nickf\\OneDrive\\Desktop\\Final Project\\FreeLabor481ColorSwapper\\src\\Doomguy.jpg");
+        try {
+            originalImg = ImageIO.read(file);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+
+    // this method gets the array of color objects that corespond to their location on the img
+    // ex pixle 0,0 has color X Y Z
+    private Color[][] getColorArray(BufferedImage img) {
+        Color[][] returnArray = new Color[img.getHeight()][img.getWidth()];
+
+        System.out.println(returnArray.length);
+        System.out.println(returnArray[0].length);
+        System.out.println(img.getHeight());
+        for (int i = 0; i < img.getHeight(); i++) {
+            for (int j = 0; j < img.getWidth(); j++) {
+                //get RGB value of pixle as 1 value
+                int RGBValue = img.getRGB(j, i);
+                //put it into a color object which then has methods to seperate the color
+                Color colorOfPixle = new Color(RGBValue, true);
+
+                returnArray[i][j] = colorOfPixle;
+
+            }
+        }
+
+        return returnArray;
+    }
+
+    //this method will get the color Array for the new img to be aplied to a clone of the original img makeing the new img
+    private Color[][] makeNewColorArrayLocations(Color[] pallet, Color[][] originalImgArray) {
+        //make new array same size as old one
+        Color[][] newImgArray = originalImgArray;
+
+
+        //loop for originalImgArray
+        for (int i = 0; i < originalImgArray[0].length; i++) {
+            for (int j = 0; j < originalImgArray.length; j++) {
+
+
+                //infinitly large distance reset before going into pallet array
+                double leastDistance = 1000000000;
+                int leastDistanceLocation = -1;
+
+                //loop for for pallet
+                for (int z = 0; z < pallet.length; z++) {
+
+
+                    if (leastDistance > getColorDistance(pallet[z], originalImgArray[j][i])) {
+                        leastDistance = getColorDistance(pallet[z], originalImgArray[j][i]);
+                        leastDistanceLocation = z;
+                    }
+
+
+                }
+                //at end of looping pallet put the found least distance color in the new arrray
+                newImgArray[j][i] = pallet[leastDistanceLocation];
+            }
+        }
+
+
+        return newImgArray;
+    }
+
+    //this is a helper method for makenewcolorarraylocations it just aplys the formula and returns the distance given the two colors
+    private double getColorDistance(Color imgColor, Color palletColor) {
+
+        int imgRed = imgColor.getRed();
+        int imgBlue = imgColor.getBlue();
+        int imgGreen = imgColor.getGreen();
+
+        int palRed = palletColor.getRed();
+        int palBlue = palletColor.getBlue();
+        int palGreen = palletColor.getGreen();
+
+        double distance = -1;
+
+        // big plug and chug formula
+        distance = Math.sqrt(((palRed - imgRed) * (palRed - imgRed)) + ((palGreen - imgGreen) * (palGreen - imgGreen)) + ((palBlue - imgBlue) * (palBlue - imgBlue)));
+
+        return distance;
+    }
+
+
+    //makes the new img given clone of origina img and the new collor pallet array locations
+    private BufferedImage makeNewImg(BufferedImage clone, Color[][] newPallet) {
+
+
+        for (int i = 0; i < newPallet[0].length; i++) {
+            for (int j = 0; j < newPallet.length; j++) {
+
+                
+               /*
+                * The TYPE_INT_ARGB represents Color as an int (4 bytes)
+                *  with alpha channel in bits 24-31, red channels in 16-23, green in 8-15 and blue in 0-7.
+                * 
+                */
+                
+            	//what im doing here is turning the R G B values into binary Strings
+               String red =Integer.toBinaryString(newPallet[j][i].getRed());
+               String green = Integer.toBinaryString(newPallet[j][i].getGreen());
+              String blue = Integer.toBinaryString(newPallet[j][i].getBlue());
+            
+       
+               //I then send it to setRGB as a parsed int with the alpha channel preset to zero 
+             
+              //current issue it wants each of these things are length 8 but parse int dosent do that
+                clone.setRGB(i, j , Integer.parseInt(blue+green+red+"00000000" , 2)) ;
+
+            }
+        }
+
+
+        return clone;
+    }
+
+    /**
+     * @return the originalImg
+     */
+    public BufferedImage getOriginalImg() {
+        return originalImg;
+    }
+
+    /**
+     * @param originalImg the originalImg to set
+     */
+    public void setOriginalImg(BufferedImage originalImg) {
+        this.originalImg = originalImg;
+    }
+
+    /**
+     * @return the newImg
+     */
+    public BufferedImage getNewImg() {
+        return newImg;
+    }
+
+    /**
+     * @param newImg the newImg to set
+     */
+    public void setNewImg(BufferedImage newImg) {
+        this.newImg = newImg;
+    }
+
+    /**
+     * @return the colorPallet
+     */
+    public Color[] getColorPallet() {
+        return colorPallet;
+    }
+
+    /**
+     * @param colorPallet the colorPallet to set
+     */
+    public void setColorPallet(Color[] colorPallet) {
+        this.colorPallet = colorPallet;
+    }
+
+    /**
+     * @return the originalColorArrayLocations
+     */
+    public Color[][] getOriginalColorArrayLocations() {
+        return OriginalColorArrayLocations;
+    }
+
+    /**
+     * @param originalColorArrayLocations the originalColorArrayLocations to set
+     */
+    public void setOriginalColorArrayLocations(Color[][] originalColorArrayLocations) {
+        OriginalColorArrayLocations = originalColorArrayLocations;
+    }
+
+    /**
+     * @return the newColorArrayLocations
+     */
+    public Color[][] getNewColorArrayLocations() {
+        return newColorArrayLocations;
+    }
+
+    /**
+     * @param newColorArrayLocations the newColorArrayLocations to set
+     */
+    public void setNewColorArrayLocations(Color[][] newColorArrayLocations) {
+        this.newColorArrayLocations = newColorArrayLocations;
+    }
+
 
 }

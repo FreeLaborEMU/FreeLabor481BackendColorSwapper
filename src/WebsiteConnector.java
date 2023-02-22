@@ -16,7 +16,7 @@ public class WebsiteConnector {
 		
 		originalImg=getImg();
 		collorPallet=getColorPallet();
-		newImg=ImgManager(originalImg, collorPallet);
+	//	newImg=ImgManager(originalImg, collorPallet);
 		
 	}
 	
