@@ -8,6 +8,7 @@ class FreeLabor481BackendColorSwapperApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Implement me");
 	}
 
 }
