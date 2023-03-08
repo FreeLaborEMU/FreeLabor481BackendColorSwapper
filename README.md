@@ -7,6 +7,24 @@ We are creating a brick palette analyzer tool for https://brickmaniac.com/
 # Resources:
 [Drive Link](https://drive.google.com/drive/u/2/folders/1K710zoNXyk16zgeNn4rHGWfX0nVB6qtu)
 
+## Set up firebase config
+Go to the FireBase project console: https://console.firebase.google.com/project/colorswapper-f6b50
+
+Open `Project Settings`, go to `Service accounts` tab, under the Firebase Admin SDK, click `Java`, and click `Generate new private key` to download the `.json` file.
+
+Once you download the `.json` file, rename the file to: `colorswapper-firebase.json` and put the file to your backend project. The project folder should look like this:
+
+```
+build/
+build.gradle
+colorswapper-firebase.json
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
+src/
+```
+
 # Team Members:
 
 ### [Daniel Thompson](https://github.com/danthomps1999)
