@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -35,7 +37,7 @@ public class ImgManager {
         palleteFromWebsite[1] = new Color(0, 255, 0);
         palleteFromWebsite[2] = new Color(255, 0, 0);
         Color[][] palleteForClone = manager.makeNewColorArrayLocations(palleteFromWebsite, palleteFromOriginal);
-        BufferedImage clone = manager.originalImg;
+        BufferedImage clone =   clone(manager.originalImg);
         BufferedImage newImg = manager.makeNewImg(clone, palleteForClone);
         
         displayImage(clone);
@@ -197,12 +199,22 @@ public class ImgManager {
                String red =Integer.toBinaryString(newPallet[j][i].getRed());
                String green = Integer.toBinaryString(newPallet[j][i].getGreen());
               String blue = Integer.toBinaryString(newPallet[j][i].getBlue());
+              String alpha = Integer.toBinaryString(newPallet[j][i].getAlpha());
             
-       
-               //I then send it to setRGB as a parsed int with the alpha channel preset to zero 
+              
+            //  System.out.println(fillto8(blue)+fillto8(green)+fillto8(red));
+              
+              green = fillto8(green);
+              blue = fillto8(blue);
+              red= fillto8(red);
+              alpha= fillto8(alpha);
+              
+             String BinaryString = blue+green+red+alpha;
+              
+       int intBinaryString = getARGB(BinaryString);
+              
              
-              //current issue it wants each of these things are length 8 but parse int dosent do that
-                clone.setRGB(i, j , Integer.parseInt(blue+green+red+"00000000" , 2)) ;
+                clone.setRGB(i, j , intBinaryString) ;
 
             }
         }
@@ -210,6 +222,62 @@ public class ImgManager {
 
         return clone;
     }
+    
+    
+    
+    private String fillto8(String str) {
+    	
+    	int startL =str.length();
+    	
+    	for(int i= 0; i<8-startL; i++) {
+    		str= "0"+str;	
+    	}
+    	
+    	
+    	
+    	return str;
+    }
+    //Source Siyuan Jiang
+    //takes the initial String made by adding the indiviusal 8 bits together
+    public static int getARGB(String argbStr) {
+        int aRGB = 0;
+
+        // edits the Int value directly useing Binary rather than standerd Int methods
+        for (int i = 0; i < argbStr.length(); i++) {
+            char bit = argbStr.charAt(i);
+            int position = 31 - i;
+            if (bit == '1')
+                aRGB = setBit(aRGB, 1, position);
+            else
+                aRGB = setBit(aRGB, 0, position);
+        }
+        return aRGB;
+    }
+//Source Siyuan Jiang
+//helper for getARGB
+    public static int setBit(int number, int bit, int position) {
+        number |= bit << position; // position is zero based index
+        return number;
+    }
+    
+    
+    //Source
+    //https://bytenota.com/java-cloning-a-bufferedimage-object/
+    public static BufferedImage clone(BufferedImage bufferImage) {
+        ColorModel colorModel = bufferImage.getColorModel();
+        WritableRaster raster = bufferImage.copyData(null);
+        boolean isAlphaPremultiplied = colorModel.isAlphaPremultiplied();
+        return new BufferedImage(colorModel, raster, isAlphaPremultiplied, null);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * @return the originalImg
