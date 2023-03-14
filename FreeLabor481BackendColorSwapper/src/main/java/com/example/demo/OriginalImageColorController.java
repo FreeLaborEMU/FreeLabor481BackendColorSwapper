@@ -21,4 +21,6 @@ public class OriginalImageColorController {
 	public String getOriginalImageColor() {
 		return "Hello";
 	}
+
+
 }
