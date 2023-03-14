@@ -42,17 +42,10 @@ public class ColorPaletteController {
                 ApiFuture<WriteResult> result = docRef.set(data);
             }
 
-        DocumentReference docRef = db.collection("colorpalette").document("darkblue");
-        // Add document data  with id "darkblue" using a hashmap
-        Map<String, Object> data = new HashMap<>();
-        data.put("red", 22);
-        data.put("green", 83);
-        data.put("blue", 126);
-        // other fields can be added in a similar way
-        ApiFuture<WriteResult> result = docRef.set(data);
+
         // ...
         // result.get() blocks on response
-        return  "Update time : " + result.get().getUpdateTime();
+        return  "Successfully updated color palette";
         } catch (IOException e) {
             return "Failure to upload color palette";
         }
