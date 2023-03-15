@@ -32,10 +32,27 @@ public class ImgManager {
     public static void main(String[] args) {
         ImgManager manager = new ImgManager();
         Color[][] palleteFromOriginal = manager.getColorArray(manager.originalImg);
-        Color[] palleteFromWebsite = new Color[3];
-        palleteFromWebsite[0] = new Color(0, 0, 255);
-        palleteFromWebsite[1] = new Color(0, 255, 0);
-        palleteFromWebsite[2] = new Color(255, 0, 0);
+        Color[] palleteFromWebsite = new Color[16];
+        
+        //update instead of 0-255 it wants 0-1 where 1=255 
+        // also it NEEDS to be spesifed that its a float for some reson
+        //
+        palleteFromWebsite[0] = new Color((float)0.0, (float)0.0, (float)1.0);
+        palleteFromWebsite[1] = new Color((float)0.0, (float)1.0, (float)0.0);
+        palleteFromWebsite[2] = new Color((float)1.0, (float)0.0, (float)0.0);
+        palleteFromWebsite[3] = new Color((float)0.0, (float)0.0, (float)0.0);
+        palleteFromWebsite[4] = new Color((float)0.0, (float)0.5, (float)0.0);
+        palleteFromWebsite[5] = new Color((float)0.5, (float)0.0, (float)0.0);
+        palleteFromWebsite[6] = new Color((float)0.5, (float)0.5, (float)0.5);
+        palleteFromWebsite[7] = new Color((float)0.0, (float)0.0, (float)0.5);
+        palleteFromWebsite[8] = new Color((float)0.0, (float)0.5, (float)0.0);
+        palleteFromWebsite[9] = new Color((float)1.0, (float)1.0, (float)1.0);
+        palleteFromWebsite[10] = new Color((float)0.0, (float)0.6, (float)0.0);
+        palleteFromWebsite[11] = new Color((float)0.0, (float)0.7, (float)0.0);
+        palleteFromWebsite[12] = new Color((float)0.0, (float)0.8, (float)0.0);
+        palleteFromWebsite[13] = new Color((float)0.6, (float)0.6, (float)0.0);
+        palleteFromWebsite[14] = new Color((float)0.7, (float)0.7, (float)0.0);
+        palleteFromWebsite[15] = new Color((float)0.8, (float)0.8, (float)0.0);
         Color[][] palleteForClone = manager.makeNewColorArrayLocations(palleteFromWebsite, palleteFromOriginal);
         BufferedImage clone =   clone(manager.originalImg);
         BufferedImage newImg = manager.makeNewImg(clone, palleteForClone);
@@ -43,6 +60,8 @@ public class ImgManager {
         displayImage(clone);
         displayImage(newImg);
         displayImage(manager.originalImg);
+        
+        System.out.println(Integer.toBinaryString(newImg.getRGB(0, 0)));
         
     }
     
@@ -108,9 +127,10 @@ public class ImgManager {
     private Color[][] getColorArray(BufferedImage img) {
         Color[][] returnArray = new Color[img.getHeight()][img.getWidth()];
 
-        System.out.println(returnArray.length);
-        System.out.println(returnArray[0].length);
-        System.out.println(img.getHeight());
+        //System.out.println(returnArray.length);
+        //System.out.println(returnArray[0].length);
+        //System.out.println(img.getHeight());
+        
         for (int i = 0; i < img.getHeight(); i++) {
             for (int j = 0; j < img.getWidth(); j++) {
                 //get RGB value of pixle as 1 value
@@ -154,6 +174,7 @@ public class ImgManager {
                 }
                 //at end of looping pallet put the found least distance color in the new arrray
                 newImgArray[j][i] = pallet[leastDistanceLocation];
+                System.out.println(newImgArray[j][i]);
             }
         }
 
@@ -201,15 +222,21 @@ public class ImgManager {
               String blue = Integer.toBinaryString(newPallet[j][i].getBlue());
               String alpha = Integer.toBinaryString(newPallet[j][i].getAlpha());
             
+              //inputing as floats fixes the conversion problem so this code works
+              
+        
               
             //  System.out.println(fillto8(blue)+fillto8(green)+fillto8(red));
               
               green = fillto8(green);
               blue = fillto8(blue);
               red= fillto8(red);
+              //red="11111111";
               alpha= fillto8(alpha);
               
              String BinaryString = blue+green+red+alpha;
+             
+             System.out.println(BinaryString+"this is binary String");
               
        int intBinaryString = getARGB(BinaryString);
               
