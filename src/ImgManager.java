@@ -32,6 +32,8 @@ public class ImgManager {
     public static void main(String[] args) {
         ImgManager manager = new ImgManager();
         Color[][] palleteFromOriginal = manager.getColorArray(manager.originalImg);
+        // add a color[] that just removes the dupes for of the  Original Color Array
+        //so Prof can see the array of original colors in img and the new colors side by side
         Color[] palleteFromWebsite = new Color[16];
         
         //update instead of 0-255 it wants 0-1 where 1=255 
@@ -62,6 +64,8 @@ public class ImgManager {
         displayImage(manager.originalImg);
         
         System.out.println(Integer.toBinaryString(newImg.getRGB(0, 0)));
+        System.out.println(newImg.getColorModel());
+        
         
     }
     
@@ -111,7 +115,7 @@ public class ImgManager {
     //default construtor for testing I added the first low res photo I found on google
     //also shows example of how BufferdImage wants its information
     public ImgManager() {
-        File file = new File("C:\\Users\\nickf\\OneDrive\\Desktop\\Final Project\\FreeLabor481ColorSwapper\\src\\Doomguy.jpg");
+        File file = new File("C:\\Users\\nickf\\Desktop\\Final Project\\FreeLabor481ColorSwapper\\src\\Doomguy.jpg");
         try {
             originalImg = ImageIO.read(file);
         } catch (IOException e) {
@@ -174,7 +178,7 @@ public class ImgManager {
                 }
                 //at end of looping pallet put the found least distance color in the new arrray
                 newImgArray[j][i] = pallet[leastDistanceLocation];
-                System.out.println(newImgArray[j][i]);
+                System.out.println(newImgArray[j][i]+"This is the color put into the new img");
             }
         }
 
@@ -234,7 +238,7 @@ public class ImgManager {
               //red="11111111";
               alpha= fillto8(alpha);
               
-             String BinaryString = blue+green+red+alpha;
+             String BinaryString = alpha+red+green+blue;
              
              System.out.println(BinaryString+"this is binary String");
               
