@@ -1,3 +1,5 @@
+package com.example.demo;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
