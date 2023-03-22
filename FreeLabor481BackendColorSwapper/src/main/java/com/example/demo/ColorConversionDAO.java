@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import org.springframework.stereotype.Repository;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -9,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
-
+@Repository
 public class ColorConversionDAO {
 
 	private BufferedImage originalImg; // this is the orignial img
