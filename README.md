@@ -7,6 +7,9 @@ We are creating a brick palette analyzer tool for https://brickmaniac.com/
 # Resources:
 [Drive Link](https://drive.google.com/drive/u/2/folders/1K710zoNXyk16zgeNn4rHGWfX0nVB6qtu)
 
+## Set up the project
+The project should be located in a path without special characters, such as whitespaces. For example, `c:\Users\User Name\repo` will not work.
+
 ## Set up firebase config
 Go to the FireBase project console: https://console.firebase.google.com/project/colorswapper-f6b50
 
