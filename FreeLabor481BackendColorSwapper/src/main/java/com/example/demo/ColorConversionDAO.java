@@ -6,7 +6,10 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,6 +26,12 @@ public class ColorConversionDAO {
 	private Color[][] newColorArrayLocations; // this is the array that hold the RGB # values for new photo
 
 	public void convert() {
+		File file = new File("C:\\FreeLabor481BackendColorSwapper\\FreeLabor481BackendColorSwapper\\src\\main\\resources\\images\\Doomguy.jpg");
+		try {
+			this.originalImg = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Color[][] palleteFromOriginal = this.getColorArray(this.originalImg);
 		Color[] palleteFromWebsite = new Color[16];
 		palleteFromWebsite[0] = new Color((float) 0.0, (float) 0.0, (float) 1.0);
@@ -45,9 +54,9 @@ public class ColorConversionDAO {
 		BufferedImage clone = clone(this.originalImg);
 		BufferedImage newImg = this.makeNewImg(clone, palleteForClone);
 
-		displayImage(clone);
+//		displayImage(clone);
 		displayImage(newImg);
-		displayImage(this.originalImg);
+//		displayImage(this.originalImg);
 
 		System.out.println(Integer.toBinaryString(newImg.getRGB(0, 0)));
 		System.out.println(newImg.getColorModel());
@@ -57,7 +66,14 @@ public class ColorConversionDAO {
 	// http://www.java2s.com/example/java/2d-graphics/display-bufferedimage.html
 	// in order to test displaying the img's
 	public static void displayImage(final BufferedImage image) {
-		displayImage("test", image);
+//		displayImage("test", image);
+		BufferedImage bi = image;
+		File outputFile = new File("C:\\FreeLabor481BackendColorSwapper\\FreeLabor481BackendColorSwapper\\src\\main\\resources\\images\\convertedImage.jpg");
+		try {
+			ImageIO.write(bi, "jpg", outputFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void displayImage(final String windowTitle, final BufferedImage image) {
