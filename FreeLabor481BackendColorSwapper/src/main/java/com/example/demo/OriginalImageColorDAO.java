@@ -12,5 +12,4 @@ public class OriginalImageColorDAO {
 		returnItem.add("Please make me functional");
 		return returnItem;
 	}
-
 }
