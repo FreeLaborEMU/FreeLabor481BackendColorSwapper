@@ -11,6 +11,7 @@ import java.io.*;
 
 import java.io.FileInputStream;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @SpringBootApplication
 public class FreeLabor481BackendColorSwapperApplication {
@@ -32,9 +33,18 @@ public class FreeLabor481BackendColorSwapperApplication {
 			}
 		}
 		if(!hasApp){
-			FirebaseApp.initializeApp(options);
+		 FirebaseApp.initializeApp(options);
 		}
 		SpringApplication.run(FreeLabor481BackendColorSwapperApplication.class, args);
+
+imgCollector mo = new imgCollector();
+		try {
+			mo.download();
+		} catch (ExecutionException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

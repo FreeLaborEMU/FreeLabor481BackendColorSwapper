@@ -20,6 +20,7 @@ dependencies {
 	implementation 'com.google.firebase:firebase-admin:9.1.1'
 	implementation platform('com.google.cloud:libraries-bom:26.9.0')
 	implementation 'com.google.cloud:google-cloud-firestore'
+	implementation 'com.google.firebase:firebase-storage:20.1.0'
 }
 
 tasks.named('test') {
