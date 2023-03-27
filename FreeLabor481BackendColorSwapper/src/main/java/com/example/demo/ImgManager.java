@@ -128,7 +128,7 @@ public class ImgManager {
 
     // this method gets the array of color objects that corespond to their location on the img
     // ex pixle 0,0 has color X Y Z
-    private Color[][] getColorArray(BufferedImage img) {
+    public Color[][] getColorArray(BufferedImage img) {
         Color[][] returnArray = new Color[img.getHeight()][img.getWidth()];
 
         //System.out.println(returnArray.length);
@@ -151,7 +151,7 @@ public class ImgManager {
     }
 
     //this method will get the color Array for the new img to be aplied to a clone of the original img makeing the new img
-    private Color[][] makeNewColorArrayLocations(Color[] pallet, Color[][] originalImgArray) {
+    public Color[][] makeNewColorArrayLocations(Color[] pallet, Color[][] originalImgArray) {
         //make new array same size as old one
         Color[][] newImgArray = originalImgArray;
 
@@ -178,7 +178,6 @@ public class ImgManager {
                 }
                 //at end of looping pallet put the found least distance color in the new arrray
                 newImgArray[j][i] = pallet[leastDistanceLocation];
-                System.out.println(newImgArray[j][i] + "This is the color put into the new img");
             }
         }
 
@@ -207,7 +206,7 @@ public class ImgManager {
 
 
     //makes the new img given clone of origina img and the new collor pallet array locations
-    private BufferedImage makeNewImg(BufferedImage clone, Color[][] newPallet) {
+    public BufferedImage makeNewImg(BufferedImage clone, Color[][] newPallet) {
 
 
         for (int i = 0; i < newPallet[0].length; i++) {
@@ -238,8 +237,6 @@ public class ImgManager {
                 alpha = fillto8(alpha);
 
                 String BinaryString = alpha + red + green + blue;
-
-                System.out.println(BinaryString + "this is binary String");
 
                 int intBinaryString = getARGB(BinaryString);
 
