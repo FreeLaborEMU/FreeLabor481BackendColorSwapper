@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -25,11 +28,7 @@ import javax.swing.WindowConstants;
 
 
 public class ImgManager {
-	
-	
-	
-	
-	
+
 
     public static void main(String[] args) {
         ImgManager manager = new ImgManager();
@@ -37,60 +36,58 @@ public class ImgManager {
         // add a color[] that just removes the dupes for of the  Original Color Array
         //so Prof can see the array of original colors in img and the new colors side by side
         Color[] palleteFromWebsite = new Color[16];
-        
+
         //update instead of 0-255 it wants 0-1 where 1=255 
         // also it NEEDS to be spesifed that its a float for some reson
         //
-        palleteFromWebsite[0] = new Color((float)0.0, (float)0.0, (float)1.0);
-        palleteFromWebsite[1] = new Color((float)0.0, (float)1.0, (float)0.0);
-        palleteFromWebsite[2] = new Color((float)1.0, (float)0.0, (float)0.0);
-        palleteFromWebsite[3] = new Color((float)0.0, (float)0.0, (float)0.0);
-        palleteFromWebsite[4] = new Color((float)0.0, (float)0.5, (float)0.0);
-        palleteFromWebsite[5] = new Color((float)0.5, (float)0.0, (float)0.0);
-        palleteFromWebsite[6] = new Color((float)0.5, (float)0.5, (float)0.5);
-        palleteFromWebsite[7] = new Color((float)0.0, (float)0.0, (float)0.5);
-        palleteFromWebsite[8] = new Color((float)0.0, (float)0.5, (float)0.0);
-        palleteFromWebsite[9] = new Color((float)1.0, (float)1.0, (float)1.0);
-        palleteFromWebsite[10] = new Color((float)0.0, (float)0.6, (float)0.0);
-        palleteFromWebsite[11] = new Color((float)0.0, (float)0.7, (float)0.0);
-        palleteFromWebsite[12] = new Color((float)0.0, (float)0.8, (float)0.0);
-        palleteFromWebsite[13] = new Color((float)0.6, (float)0.6, (float)0.0);
-        palleteFromWebsite[14] = new Color((float)0.7, (float)0.7, (float)0.0);
-        palleteFromWebsite[15] = new Color((float)0.8, (float)0.8, (float)0.0);
+        palleteFromWebsite[0] = new Color((float) 0.0, (float) 0.0, (float) 1.0);
+        palleteFromWebsite[1] = new Color((float) 0.0, (float) 1.0, (float) 0.0);
+        palleteFromWebsite[2] = new Color((float) 1.0, (float) 0.0, (float) 0.0);
+        palleteFromWebsite[3] = new Color((float) 0.0, (float) 0.0, (float) 0.0);
+        palleteFromWebsite[4] = new Color((float) 0.0, (float) 0.5, (float) 0.0);
+        palleteFromWebsite[5] = new Color((float) 0.5, (float) 0.0, (float) 0.0);
+        palleteFromWebsite[6] = new Color((float) 0.5, (float) 0.5, (float) 0.5);
+        palleteFromWebsite[7] = new Color((float) 0.0, (float) 0.0, (float) 0.5);
+        palleteFromWebsite[8] = new Color((float) 0.0, (float) 0.5, (float) 0.0);
+        palleteFromWebsite[9] = new Color((float) 1.0, (float) 1.0, (float) 1.0);
+        palleteFromWebsite[10] = new Color((float) 0.0, (float) 0.6, (float) 0.0);
+        palleteFromWebsite[11] = new Color((float) 0.0, (float) 0.7, (float) 0.0);
+        palleteFromWebsite[12] = new Color((float) 0.0, (float) 0.8, (float) 0.0);
+        palleteFromWebsite[13] = new Color((float) 0.6, (float) 0.6, (float) 0.0);
+        palleteFromWebsite[14] = new Color((float) 0.7, (float) 0.7, (float) 0.0);
+        palleteFromWebsite[15] = new Color((float) 0.8, (float) 0.8, (float) 0.0);
         Color[][] palleteForClone = manager.makeNewColorArrayLocations(palleteFromWebsite, palleteFromOriginal);
-        BufferedImage clone =   clone(manager.originalImg);
+        BufferedImage clone = clone(manager.originalImg);
         BufferedImage newImg = manager.makeNewImg(clone, palleteForClone);
-        
+
         displayImage(clone);
         displayImage(newImg);
         displayImage(manager.originalImg);
-        
+
         System.out.println(Integer.toBinaryString(newImg.getRGB(0, 0)));
         System.out.println(newImg.getColorModel());
-        
-        
     }
-    
+
     //stole this from http://www.java2s.com/example/java/2d-graphics/display-bufferedimage.html
     //in order to test displaying the img's
-        public static void displayImage(final BufferedImage image) {
-            displayImage("test", image);
-        }
+    public static void displayImage(final BufferedImage image) {
+        displayImage("test", image);
+    }
 
-        public static void displayImage(final String windowTitle,
-                final BufferedImage image) {
-            new JFrame(windowTitle) {
-                {
-                    final JLabel label = new JLabel("", new ImageIcon(image), 0);
-                    add(label);
-                    pack();
-                    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                    setVisible(true);
-                }
-            };
-        }
+    public static void displayImage(final String windowTitle,
+                                    final BufferedImage image) {
+        new JFrame(windowTitle) {
+            {
+                final JLabel label = new JLabel("", new ImageIcon(image), 0);
+                add(label);
+                pack();
+                setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                setVisible(true);
+            }
+        };
+    }
     //end of stuff from java2s
-    
+
 
     private BufferedImage originalImg; //this is the orignial img
     private BufferedImage newImg; // this is the new img
@@ -117,8 +114,9 @@ public class ImgManager {
     //default construtor for testing I added the first low res photo I found on google
     //also shows example of how BufferdImage wants its information
     public ImgManager() {
-        File file = new File("C:\\Users\\nickf\\Desktop\\Final Project\\FreeLabor481ColorSwapper\\src\\Doomguy.jpg");
+        Resource resource = new ClassPathResource("images/Doomguy.jpg");
         try {
+            File file = resource.getFile();
             originalImg = ImageIO.read(file);
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -136,7 +134,7 @@ public class ImgManager {
         //System.out.println(returnArray.length);
         //System.out.println(returnArray[0].length);
         //System.out.println(img.getHeight());
-        
+
         for (int i = 0; i < img.getHeight(); i++) {
             for (int j = 0; j < img.getWidth(); j++) {
                 //get RGB value of pixle as 1 value
@@ -180,7 +178,7 @@ public class ImgManager {
                 }
                 //at end of looping pallet put the found least distance color in the new arrray
                 newImgArray[j][i] = pallet[leastDistanceLocation];
-                System.out.println(newImgArray[j][i]+"This is the color put into the new img");
+                System.out.println(newImgArray[j][i] + "This is the color put into the new img");
             }
         }
 
@@ -215,39 +213,38 @@ public class ImgManager {
         for (int i = 0; i < newPallet[0].length; i++) {
             for (int j = 0; j < newPallet.length; j++) {
 
-                
-               /*
-                * The TYPE_INT_ARGB represents Color as an int (4 bytes)
-                *  with alpha channel in bits 24-31, red channels in 16-23, green in 8-15 and blue in 0-7.
-                * 
-                */
-                
-            	//what im doing here is turning the R G B values into binary Strings
-               String red =Integer.toBinaryString(newPallet[j][i].getRed());
-               String green = Integer.toBinaryString(newPallet[j][i].getGreen());
-              String blue = Integer.toBinaryString(newPallet[j][i].getBlue());
-              String alpha = Integer.toBinaryString(newPallet[j][i].getAlpha());
-            
-              //inputing as floats fixes the conversion problem so this code works
-              
-        
-              
-            //  System.out.println(fillto8(blue)+fillto8(green)+fillto8(red));
-              
-              green = fillto8(green);
-              blue = fillto8(blue);
-              red= fillto8(red);
-              //red="11111111";
-              alpha= fillto8(alpha);
-              
-             String BinaryString = alpha+red+green+blue;
-             
-             System.out.println(BinaryString+"this is binary String");
-              
-       int intBinaryString = getARGB(BinaryString);
-              
-             
-                clone.setRGB(i, j , intBinaryString) ;
+
+                /*
+                 * The TYPE_INT_ARGB represents Color as an int (4 bytes)
+                 *  with alpha channel in bits 24-31, red channels in 16-23, green in 8-15 and blue in 0-7.
+                 *
+                 */
+
+                //what im doing here is turning the R G B values into binary Strings
+                String red = Integer.toBinaryString(newPallet[j][i].getRed());
+                String green = Integer.toBinaryString(newPallet[j][i].getGreen());
+                String blue = Integer.toBinaryString(newPallet[j][i].getBlue());
+                String alpha = Integer.toBinaryString(newPallet[j][i].getAlpha());
+
+                //inputing as floats fixes the conversion problem so this code works
+
+
+                //  System.out.println(fillto8(blue)+fillto8(green)+fillto8(red));
+
+                green = fillto8(green);
+                blue = fillto8(blue);
+                red = fillto8(red);
+                //red="11111111";
+                alpha = fillto8(alpha);
+
+                String BinaryString = alpha + red + green + blue;
+
+                System.out.println(BinaryString + "this is binary String");
+
+                int intBinaryString = getARGB(BinaryString);
+
+
+                clone.setRGB(i, j, intBinaryString);
 
             }
         }
@@ -255,21 +252,20 @@ public class ImgManager {
 
         return clone;
     }
-    
-    
-    
+
+
     private String fillto8(String str) {
-    	
-    	int startL =str.length();
-    	
-    	for(int i= 0; i<8-startL; i++) {
-    		str= "0"+str;	
-    	}
-    	
-    	
-    	
-    	return str;
+
+        int startL = str.length();
+
+        for (int i = 0; i < 8 - startL; i++) {
+            str = "0" + str;
+        }
+
+
+        return str;
     }
+
     //Source Siyuan Jiang
     //takes the initial String made by adding the indiviusal 8 bits together
     public static int getARGB(String argbStr) {
@@ -286,14 +282,15 @@ public class ImgManager {
         }
         return aRGB;
     }
-//Source Siyuan Jiang
+
+    //Source Siyuan Jiang
 //helper for getARGB
     public static int setBit(int number, int bit, int position) {
         number |= bit << position; // position is zero based index
         return number;
     }
-    
-    
+
+
     //Source
     //https://bytenota.com/java-cloning-a-bufferedimage-object/
     public static BufferedImage clone(BufferedImage bufferImage) {
@@ -302,15 +299,7 @@ public class ImgManager {
         boolean isAlphaPremultiplied = colorModel.isAlphaPremultiplied();
         return new BufferedImage(colorModel, raster, isAlphaPremultiplied, null);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 
     /**
      * @return the originalImg
