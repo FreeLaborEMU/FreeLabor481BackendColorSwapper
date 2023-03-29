@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.storage.*;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +21,7 @@ public class FreeLabor481BackendColorSwapperApplication {
 		// Use a service account
 		InputStream serviceAccount = new FileInputStream("./colorswapper-firebase.json");
 		GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
+
 		FirebaseOptions options = new FirebaseOptions.Builder()
 				.setCredentials(credentials)
 				.build();
@@ -37,9 +39,11 @@ public class FreeLabor481BackendColorSwapperApplication {
 		}
 		SpringApplication.run(FreeLabor481BackendColorSwapperApplication.class, args);
 
-imgCollector mo = new imgCollector();
+		imgCollector mo = new imgCollector();
+		InputStream upload= new FileInputStream("C:\\Users\\Solomon\\Documents\\UserB\\FreeLabor481BackendColorSwapper\\FreeLabor481BackendColorSwapper\\src\\main\\resources\\testingnew.txt");
 		try {
-			mo.download();
+			mo.Download();
+			mo.Upload(credentials,upload);
 		} catch (ExecutionException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
