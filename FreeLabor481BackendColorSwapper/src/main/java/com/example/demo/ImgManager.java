@@ -320,6 +320,36 @@ public class ImgManager {
     			
     	return palletForUser;
     }
+	
+	// This method returns the Color object at quardnets X Y for a given Img pallet
+	//Reminder: Color objects have the R G B Field.
+	public static Color returnColorAtLocation(int x, int y, Color[][] Img) {
+		
+		return Img[x][y];
+		
+	}
+	
+	// takes a object and assumeing it has the fields red green blue will make a Color object with those colors
+	public static Color makeColorFromGenericObject(Object<Object> E)throws Execption {
+		
+		try(
+		int r=0;
+		int g=0;
+		int b=0;
+		
+		r=(int)E.redValue;
+		g=(int)E.greenValue;
+		b=(int)E.blueValue;
+		
+		return new Color(r , g ,b);
+		)
+		catch(Execption e) {
+			throw new Execption("Object provided to makeColorFromGenericObject dose not have a redValue greenValue or blueValue int variable");
+		}
+		
+	}
+	
+	
 
 	/**
 	 * @return the originalImg
