@@ -298,6 +298,7 @@ public class ImgManager {
     }
     
     
+  
   //this method takes all the colors from the img and removes duplicates
     // it uses an arrayList before returning a reguler array since from what I was told simpler data types are easyer for the website to read
     public Color[] getColorPalletForUser(Color[][] imgPallet) {
@@ -331,6 +332,12 @@ public class ImgManager {
     	}
     	
 
+    	
+
+    	
+    	
+    	return palletForUser;
+    }
     	
 
 
