@@ -82,9 +82,13 @@ public class ColorConversionDAO {
 		Color[][] palleteForClone = manager.makeNewColorArrayLocations(palleteFromWebsite, palleteFromOriginal);
 		BufferedImage clone = ImgManager.clone(manager.getOriginalImg());
 		BufferedImage newImg = manager.makeNewImg(clone, palleteForClone);
-
-		//displayImage(newImg);	
 		
 		return ImgManager.getColorPalletForUser(palleteForClone);
+	}
+	
+	public Color[] originalImageColors() {
+		ImgManager manager = new ImgManager();
+		Color[][] palleteFromOriginal = manager.getColorArray(manager.getOriginalImg());
+		return ImgManager.getColorPalletForUser(palleteFromOriginal);
 	}
 }
