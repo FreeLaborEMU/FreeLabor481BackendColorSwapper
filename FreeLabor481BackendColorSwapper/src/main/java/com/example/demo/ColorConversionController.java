@@ -36,7 +36,23 @@ public class ColorConversionController {
     public ArrayList<FrontendColor> convertedImageColors() {
     	Color[]  arrayColors = this.colorConversionDAO.convertedImageColors();
     	ArrayList<FrontendColor> colors = new ArrayList<FrontendColor>();
-    	for(int i=0; i<100; i++) {
+    	for(int i=0; i<250; i++) {
+    		FrontendColor color = new FrontendColor();
+    		color.name = "holder";
+    		color.redValue = arrayColors[i].getRed();
+    		color.greenValue = arrayColors[i].getGreen();
+    		color.blueValue = arrayColors[i].getBlue();
+    		
+    		colors.add(color);
+    	}
+    	return colors;
+    }
+    
+    @GetMapping(path = "/originalImageColors")
+    public ArrayList<FrontendColor> originalImageColors() {
+    	Color[]  arrayColors = this.colorConversionDAO.originalImageColors();
+    	ArrayList<FrontendColor> colors = new ArrayList<FrontendColor>();
+    	for(int i=0; i<250; i++) {
     		FrontendColor color = new FrontendColor();
     		color.name = "holder";
     		color.redValue = arrayColors[i].getRed();
