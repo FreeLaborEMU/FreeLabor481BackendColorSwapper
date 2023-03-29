@@ -289,39 +289,37 @@ public class ImgManager {
 	// it uses an arrayList before returning a reguler array since from what I was
 	// told simpler data types are easyer for the website to read
 	public static Color[] getColorPalletForUser(Color[][] imgPallet) {
-
-		ArrayList<Color> TempPalletForUser = new ArrayList<Color>();
-
-		Color[] palletForUser;
-
-		// fill out Array list with all the colors
-		for (int i = 0; i < imgPallet.length; i++) {
-			for (int j = 0; j < imgPallet[0].length; j++) {
-
-				TempPalletForUser.add(imgPallet[i][j]);
-			}
-		}
-
-		// remove dupes, color has its own equals which should be abble to tell if
-		// colors are equal
-		for (int i = 0; i < TempPalletForUser.size() - 1; i++) {
-
-			if (TempPalletForUser.get(i).equals(TempPalletForUser.get(i + 1))) {
-				TempPalletForUser.remove(i + 1);
-
-			}
-
-		}
-		palletForUser = new Color[TempPalletForUser.size()];
-		// turn the array list into a normal array
-		for (int i = 0; i < TempPalletForUser.size(); i++) {
-			palletForUser[i] = TempPalletForUser.get(i);
-		}
-		
-		System.out.println("Pallette for user:");
-		System.out.println(palletForUser);
-		return palletForUser;
-	}
+    	
+    	ArrayList<Color> TempPalletForUser = new ArrayList<Color>();
+    	
+    	Color [] palletForUser;
+    	
+    	//fill out Array list with all the colors
+    	for(int i=0; i<imgPallet.length; i++) {
+        	for	(int j=0; j<imgPallet[0].length; j++) {
+        		
+        		TempPalletForUser.add(imgPallet[i][j]);	
+        	}
+        	}
+    	
+    	
+    	//remove dupes, color has its own equals which should be abble to tell if colors are equal
+    	for(int i=0; i<TempPalletForUser.size()-1; i++) {
+    		
+    		if(TempPalletForUser.get(i).equals(TempPalletForUser.get(i+1))){
+    			TempPalletForUser.remove(i+1);
+    			
+    		}
+    		
+    	}
+    	palletForUser=new Color [TempPalletForUser.size()];
+    	// turn the array list into a normal array
+    	for(int i=0; i<TempPalletForUser.size(); i++) {
+    		palletForUser[i]=TempPalletForUser.get(i);	
+    	}
+    			
+    	return palletForUser;
+    }
 
 	/**
 	 * @return the originalImg
