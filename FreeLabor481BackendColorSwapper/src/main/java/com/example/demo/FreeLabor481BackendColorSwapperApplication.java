@@ -6,6 +6,8 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import java.io.*;
 
@@ -39,11 +41,13 @@ public class FreeLabor481BackendColorSwapperApplication {
 		}
 		SpringApplication.run(FreeLabor481BackendColorSwapperApplication.class, args);
 
-		imgCollector mo = new imgCollector();
-		InputStream upload= new FileInputStream("C:\\Users\\Solomon\\Documents\\UserB\\FreeLabor481BackendColorSwapper\\FreeLabor481BackendColorSwapper\\src\\main\\resources\\testingnew.txt");
+		imgCollector mo = new imgCollector(credentials);
+		Resource resource= new ClassPathResource("NewCopy.jpg");
+		InputStream upload= resource.getInputStream();
 		try {
-			mo.Download();
-			mo.Upload(credentials,upload);
+			String bob= mo.Download();
+			System.out.print(bob+"   ok");
+			mo.Upload(upload);
 		} catch (ExecutionException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
