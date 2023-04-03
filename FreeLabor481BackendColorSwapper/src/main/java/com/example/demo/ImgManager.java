@@ -308,6 +308,9 @@ public class ImgManager {
     		
     		if(TempPalletForUser.get(i).equals(TempPalletForUser.get(i+1))){
     			TempPalletForUser.remove(i+1);
+
+    			//need to add j Loop
+    			// 1    2  5   6   
     			
     		}
     		
