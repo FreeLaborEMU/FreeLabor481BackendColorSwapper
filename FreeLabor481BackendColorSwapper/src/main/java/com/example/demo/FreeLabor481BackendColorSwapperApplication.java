@@ -46,12 +46,25 @@ public class FreeLabor481BackendColorSwapperApplication {
 		ImgCollector mo = new ImgCollector(credentials);
 		Resource resource= new ClassPathResource("images/convertedImage.jpg");
 		InputStream upload= resource.getInputStream();
-		String bob= null;
+		String bob= "ma";
+		String temp="";
 		try {
-			bob = mo.Download();
-			mo.Upload(upload);
-			System.out.print(bob+"   ok");
-		} catch (ExecutionException e) {
+
+			while (!bob.equals(null))
+			{
+
+					bob = mo.Download();
+					System.out.println(bob);
+					if (!bob.equals("done") && !bob.equals(temp)) {
+					//	mo.Upload(upload);
+
+					}
+
+					temp=bob;
+				System.out.println(temp+" temp");
+
+			}
+	} catch (ExecutionException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);

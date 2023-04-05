@@ -13,6 +13,7 @@ import com.google.firebase.cloud.StorageClient;
 import com.google.cloud.storage.*;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.cloud.*;
+import jakarta.websocket.RemoteEndpoint;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,6 +31,7 @@ import java.util.concurrent.ExecutionException;
 public class ImgCollector {
 
     private String Name;
+    private String Url;
     private GoogleCredentials cred;
     public ImgCollector(GoogleCredentials credentials) {
         cred=credentials;
@@ -62,12 +64,14 @@ public class ImgCollector {
             {
                 System.out.println(blob[1] + " | " + blob[2]);
                 Name=blob[2];
+                Url= blob[1];
                 Map<String, Object> data = new HashMap<>();
                 data.put("check",true);
-                data.put("orginal",blob[1]);
+                data.put("orginal",Url);
                 data.put("username",Name);
                 // other fields can be added in a similar way
                 ApiFuture<WriteResult> result = db.collection("users").document(Name).set(data);
+
 
                 return blob[1];
 
@@ -84,7 +88,7 @@ public class ImgCollector {
 
 
 
-    @GetMapping(path = "/download")
+    @GetMapping(path = "/downloadV2")
     public String DownloadV2() throws ExecutionException, InterruptedException {
         Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
         BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","images/");
@@ -97,11 +101,13 @@ public class ImgCollector {
     @GetMapping(path = "/upload")
     public void Upload(InputStream upload) throws ExecutionException, InterruptedException, IOException {
         Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
-
+        Firestore db = FirestoreClient.getFirestore();
 
         BlobId blobId=BlobId.of("colorswapper-f6b50.appspot.com","images/"+Name+"/Copy");
         BlobInfo blobInfo= BlobInfo.newBuilder(blobId).setContentType("image/png").build();
         Blob uploading =storage.create(blobInfo,upload);
+
+
 
     }
 
