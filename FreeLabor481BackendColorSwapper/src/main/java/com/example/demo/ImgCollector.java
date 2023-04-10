@@ -93,16 +93,16 @@ public class ImgCollector {
     @GetMapping(path = "/downloadV2")
     public void DownloadV2() throws ExecutionException, InterruptedException, IOException {
         Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
-        BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","Copy");
+        BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","files/dogo");
         //  storage.downloadTo(blobId,);
 
         Resource resource= new ClassPathResource("images");
        // InputStream file= ;
 
-        Path check = Path.of(resource.getFile().getPath());
+       // Path check =();
         Blob blob= storage.get(blobId);
-        blob.downloadTo(check);
-        System.out.print(check);
+        blob.downloadTo(Path.of("C:\\Users\\Solomon\\Documents\\GitHub\\dat"));
+    //    System.out.print(check);
 
        //
 
