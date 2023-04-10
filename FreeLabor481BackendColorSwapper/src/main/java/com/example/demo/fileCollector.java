@@ -6,15 +6,16 @@ import com.google.auth.oauth2.AccessToken;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.IdTokenCredentials;
 import com.google.auth.oauth2.IdTokenProvider;
+import com.google.cloud.firestore.*;
+import com.google.cloud.storage.Blob;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.cloud.StorageClient;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
 import com.google.cloud.storage.*;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.cloud.*;
+import jakarta.websocket.RemoteEndpoint;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,71 +31,21 @@ import java.util.concurrent.ExecutionException;
 
 public class fileCollector {
     private String Name;
+    private String Url;
     private GoogleCredentials cred;
     public fileCollector(GoogleCredentials credentials) {
         cred=credentials;
     }
 
-
-    @GetMapping(path = "/download")
-    public String Download() throws ExecutionException, InterruptedException {
-        String firestorage;
-        Firestore db = FirestoreClient.getFirestore();
-        Iterable<DocumentReference> has =db.collection("users").listDocuments();
-        ApiFuture<DocumentSnapshot> future;
-        DocumentSnapshot document;
-
-        for(DocumentReference docstore: has)
-        {
-
-
-            future=docstore.get();
-            document= future.get();
-            firestorage =document.getData().values().toString();
-            String[] blob=firestorage.split(",");
-            blob[0]=blob[0].substring(1,blob[0].length());
-            blob [1]=blob[1].trim();
-            blob[1]=blob[1].substring(0,blob[1].length());
-            blob[2]=blob[2].substring(0,blob[2].length()-1);
-            blob [2]=blob[2].trim();
-
-            if(blob[0].equals("false"))
-            {
-                System.out.println(blob[1] + "(" + blob[2]);
-                Name=blob[2];
-                return blob[1];
-
-            }
-
-
-        }
-
-        Name="done";
-        return "done";
-
-    }
-
-
-
-    @GetMapping(path = "/download")
-    public String DownloadV2() throws ExecutionException, InterruptedException {
+    @GetMapping(path = "/downloadV2")
+    public void DownloadFile() throws ExecutionException, InterruptedException, IOException {
         Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
-        BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","files/");
-        return storage.get(blobId).toString();
+        BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","files/dogo");
 
+        //Resource resource= new ClassPathResource("images");
 
+        Blob blob= storage.get(blobId);
+        blob.downloadTo(Path.of("C:\\Users\\MGRM\\Documents\\GitHub\\dat"));
     }
 
-
-    @GetMapping(path = "/upload")
-    public void Upload(InputStream upload) throws ExecutionException, InterruptedException, IOException {
-        Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
-
-
-        BlobId blobId=BlobId.of("colorswapper-f6b50.appspot.com","files/"+Name+"/All_Paint_Mixes");
-        BlobInfo blobInfo= BlobInfo.newBuilder(blobId).setContentType("application/octet-stream").build();
-        Blob uploading =storage.create(blobInfo,upload);
-
-
-    }
 }

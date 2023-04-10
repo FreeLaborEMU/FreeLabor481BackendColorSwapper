@@ -44,9 +44,7 @@ public class FreeLabor481BackendColorSwapperApplication {
 		Resource resource = new ClassPathResource("files/All_Paint_Mixes.dat");
 		InputStream upload= resource.getInputStream();
 		try {
-			String doe = moe.Download();
-			System.out.print(doe+"   ok");
-			moe.Upload(upload);
+			moe.DownloadFile();
 		} catch (ExecutionException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
