@@ -12,6 +12,10 @@ import org.springframework.core.io.Resource;
 import java.io.*;
 
 
+
+
+
+
 import java.io.FileInputStream;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -40,16 +44,44 @@ public class FreeLabor481BackendColorSwapperApplication {
 		}
 		SpringApplication.run(FreeLabor481BackendColorSwapperApplication.class, args);
 
+
 		fileCollector moe = new fileCollector(credentials);
-		Resource resource = new ClassPathResource("files/All_Paint_Mixes.dat");
-		InputStream upload= resource.getInputStream();
+		Resource resources = new ClassPathResource("files/All_Paint_Mixes.dat");
+		InputStream upload= resources.getInputStream();
 		try {
 			moe.DownloadFile();
 		} catch (ExecutionException e) {
+
+		ImgCollector mo = new ImgCollector(credentials);
+		Resource resource= new ClassPathResource("images/convertedImage.jpg");
+		InputStream upload= resource.getInputStream();
+		String bob= "ma";
+		String temp="";
+		try {
+
+			//while (!bob.equals("done"))
+		//	{
+				mo.DownloadV2();
+
+					//bob = mo.Download();
+					if (!bob.equals("done") && !bob.equals(temp)) {
+					//	mo.Upload(upload);
+
+					}
+
+			//		temp=bob;
+			//	System.out.println(temp+" temp");
+
+		//	}
+	} catch (ExecutionException e) {
+
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
+
+
+
 
 	}
 
