@@ -50,20 +50,20 @@ public class FreeLabor481BackendColorSwapperApplication {
 		String temp="";
 		try {
 
-			while (!bob.equals(null))
-			{
+			//while (!bob.equals("done"))
+		//	{
+				mo.DownloadV2();
 
-					bob = mo.Download();
-					System.out.println(bob);
+					//bob = mo.Download();
 					if (!bob.equals("done") && !bob.equals(temp)) {
 					//	mo.Upload(upload);
 
 					}
 
-					temp=bob;
-				System.out.println(temp+" temp");
+			//		temp=bob;
+			//	System.out.println(temp+" temp");
 
-			}
+		//	}
 	} catch (ExecutionException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {

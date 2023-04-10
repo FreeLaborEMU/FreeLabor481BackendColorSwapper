@@ -14,6 +14,8 @@ import com.google.cloud.storage.*;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.cloud.*;
 import jakarta.websocket.RemoteEndpoint;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -89,25 +91,41 @@ public class ImgCollector {
 
 
     @GetMapping(path = "/downloadV2")
-    public String DownloadV2() throws ExecutionException, InterruptedException {
+    public void DownloadV2() throws ExecutionException, InterruptedException, IOException {
         Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
-        BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","images/");
-        return storage.get(blobId).toString();
+        BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","Copy");
+        //  storage.downloadTo(blobId,);
+
+        Resource resource= new ClassPathResource("images");
+       // InputStream file= ;
+
+        Path check = Path.of(resource.getFile().getPath());
+        Blob blob= storage.get(blobId);
+        blob.downloadTo(check);
+        System.out.print(check);
+
+       //
+
 
 
     }
 
 
     @GetMapping(path = "/upload")
-    public void Upload(InputStream upload) throws ExecutionException, InterruptedException, IOException {
-        Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
-        Firestore db = FirestoreClient.getFirestore();
+    public synchronized void Upload(InputStream upload) throws ExecutionException, InterruptedException, IOException {
+        if(!Name.equals("done"))
+        {
+            Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
+            Firestore db = FirestoreClient.getFirestore();
 
-        BlobId blobId=BlobId.of("colorswapper-f6b50.appspot.com","images/"+Name+"/Copy");
-        BlobInfo blobInfo= BlobInfo.newBuilder(blobId).setContentType("image/png").build();
-        Blob uploading =storage.create(blobInfo,upload);
+            BlobId blobId=BlobId.of("colorswapper-f6b50.appspot.com","images/"+Name+"/Copy");
+            BlobInfo blobInfo= BlobInfo.newBuilder(blobId).setContentType("image/png").build();
+            wait();
+            Blob uploading =storage.create(blobInfo,upload);
+            notify();
 
 
+        }
 
     }
 
