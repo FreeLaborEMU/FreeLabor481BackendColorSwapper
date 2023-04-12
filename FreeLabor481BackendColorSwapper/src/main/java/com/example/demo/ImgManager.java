@@ -59,16 +59,13 @@ public class ImgManager {
 		BufferedImage clone = clone(manager.originalImg);
 		BufferedImage newImg = manager.makeNewImg(clone, palleteForClone);
 
-
 		displayImage(clone);
 		displayImage(newImg);
 		displayImage(manager.originalImg);
 
 		System.out.println(Integer.toBinaryString(newImg.getRGB(0, 0)));
 		System.out.println(newImg.getColorModel());
-		
-		
-		
+
 	}
 
 	// stole this from
@@ -293,79 +290,67 @@ public class ImgManager {
 	// it uses an arrayList before returning a reguler array since from what I was
 	// told simpler data types are easyer for the website to read
 	public static Color[] getColorPalletForUser(Color[][] imgPallet) {
-    	
-    	ArrayList<Color> TempPalletForUser = new ArrayList<Color>();
-    	
-    	Color [] palletForUser;
-    	
-    	//fill out Array list with all the colors
-    	for(int i=0; i<imgPallet.length; i++) {
-        	for	(int j=0; j<imgPallet[0].length; j++) {
-        		
-        		TempPalletForUser.add(imgPallet[i][j]);	
-        	}
-        	}
-    	
-    	
-    	//remove dupes, color has its own equals which should be abble to tell if colors are equal
-    	for(int i=0; i<TempPalletForUser.size(); i++){
-    	for(int j =i+1; j<TempPalletForUser.size()-1; j++) {
-    			
-    			
-    		
-    		
-    		if(TempPalletForUser.get(i).equals(TempPalletForUser.get(j))){
-    			TempPalletForUser.remove(j);
 
-    			//need to add j Loop
-    			// 1    2  5   6   
-    			
-    		}
-    		}
-    		
-    	}
-    	palletForUser=new Color [TempPalletForUser.size()];
-    	// turn the array list into a normal array
-    	for(int i=0; i<TempPalletForUser.size(); i++) {
-    		palletForUser[i]=TempPalletForUser.get(i);	
-    	}
-    			
-    	return palletForUser;
-    }
-	
-	// This method returns the Color object at quardnets X Y for a given Img pallet
-	//Reminder: Color objects have the R G B Field.
-	public static Color returnColorAtLocation(int x, int y, Color[][] Img) {
-		
-		return Img[x][y];
-		
+		ArrayList<Color> TempPalletForUser = new ArrayList<Color>();
+
+		Color[] palletForUser;
+
+		// fill out Array list with all the colors
+		for (int i = 0; i < imgPallet.length; i++) {
+			for (int j = 0; j < imgPallet[0].length; j++) {
+
+				TempPalletForUser.add(imgPallet[i][j]);
+			}
+		}
+
+		// remove dupes, color has its own equals which should be abble to tell if
+		// colors are equal
+		for (int i = 0; i < TempPalletForUser.size(); i++) {
+			for (int j = i + 1; j < TempPalletForUser.size() - 1; j++) {
+
+				if (TempPalletForUser.get(i).equals(TempPalletForUser.get(j))) {
+					TempPalletForUser.remove(j);
+
+					// need to add j Loop
+					// 1 2 5 6
+
+				}
+			}
+
+		}
+		palletForUser = new Color[TempPalletForUser.size()];
+		// turn the array list into a normal array
+		for (int i = 0; i < TempPalletForUser.size(); i++) {
+			palletForUser[i] = TempPalletForUser.get(i);
+		}
+
+		return palletForUser;
 	}
-	
-	
-	// takes a object and assumeing it has the fields red green blue will make a Color object with those colors
-	
-	
+
+	// This method returns the Color object at quardnets X Y for a given Img pallet
+	// Reminder: Color objects have the R G B Field.
+	public static Color returnColorAtLocation(int x, int y, Color[][] Img) {
+
+		return Img[x][y];
+
+	}
+
+	// takes a object and assumeing it has the fields red green blue will make a
+	// Color object with those colors
+
 	public static Color makeColorFromGenericObject(Object O) {
-		
-		
-		int r=0;
-		int g=0;
-		int b=0;
-		
+
+		int r = 0;
+		int g = 0;
+		int b = 0;
+
 //		r=(int)O.redValue;
 //		g=(int)O.greenValue;
 //		b=(int)O.blueValue;
-		
-		return new Color(r , g ,b);
-				
-		
-		}
-		
-	
-	
-	
-	
-	
+
+		return new Color(r, g, b);
+
+	}
 
 	/**
 	 * @return the originalImg
