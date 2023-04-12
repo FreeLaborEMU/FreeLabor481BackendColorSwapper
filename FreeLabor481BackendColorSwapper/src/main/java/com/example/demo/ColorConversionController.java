@@ -36,7 +36,7 @@ public class ColorConversionController {
     public ArrayList<FrontendColor> convertedImageColors() {
     	Color[]  arrayColors = this.colorConversionDAO.convertedImageColors();
     	ArrayList<FrontendColor> colors = new ArrayList<FrontendColor>();
-    	for(int i=0; i<250; i++) {
+    	for(int i=0; i<arrayColors.length; i++) {
     		FrontendColor color = new FrontendColor();
     		color.name = "holder";
     		color.redValue = arrayColors[i].getRed();
@@ -52,7 +52,7 @@ public class ColorConversionController {
     public ArrayList<FrontendColor> originalImageColors() {
     	Color[]  arrayColors = this.colorConversionDAO.originalImageColors();
     	ArrayList<FrontendColor> colors = new ArrayList<FrontendColor>();
-    	for(int i=0; i<250; i++) {
+    	for(int i=0; i<arrayColors.length; i++) {
     		FrontendColor color = new FrontendColor();
     		color.name = "holder";
     		color.redValue = arrayColors[i].getRed();

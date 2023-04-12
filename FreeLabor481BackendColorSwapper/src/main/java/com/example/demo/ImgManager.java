@@ -135,7 +135,7 @@ public class ImgManager {
 		// System.out.println(img.getHeight());
 
 		for (int i = 0; i < img.getHeight(); i++) {
-			for (int j = i + 1; j < img.getWidth(); j++) {
+			for (int j = 0; j < img.getWidth(); j++) {
 				// get RGB value of pixle as 1 value
 				int RGBValue = img.getRGB(j, i);
 				// put it into a color object which then has methods to seperate the color
@@ -298,8 +298,9 @@ public class ImgManager {
 		// fill out Array list with all the colors
 		for (int i = 0; i < imgPallet.length; i++) {
 			for (int j = 0; j < imgPallet[0].length; j++) {
-
-				TempPalletForUser.add(imgPallet[i][j]);
+				if (imgPallet[i][j] != null) {
+					TempPalletForUser.add(imgPallet[i][j]);
+				}
 			}
 		}
 
