@@ -1,0 +1,228 @@
+COPYRIGHT PANTONE INC.,,,,,
+TABLE BELOW MAY CONTAIN APPROXIMATE VALUES.,,,,,
+1,black,12,5,2,black
+2,custom 2,38,19,10,ruby 2
+3,custom 3,54,32,18,ruby 3
+4,custom 4,66,32,5,ruby 4
+5,custom 5,54,45,36,ruby 5
+6,custom 6,75,44,17,ruby 6
+7,custom 7,97,35,6,ruby 7
+8,custom 8,74,54,34,ruby 8
+9,custom 9,111,48,13,ruby 9
+10,custom 10,87,64,24,ruby 10
+11,custom 11,71,67,63,ruby 11
+12,custom 12,97,60,34,ruby 12
+13,custom 13,89,73,43,ruby 13
+14,custom 14,104,78,29,ruby 14
+15,custom 15,94,84,63,ruby 15
+16,custom 16,156,61,18,ruby 16
+17,custom 17,106,86,48,ruby 17
+18,custom 18,115,97,36,ruby 18
+19,custom 19,112,95,74,ruby 19
+20,custom 20,126,91,68,ruby 20
+21,custom 21,118,100,53,ruby 21
+22,custom 22,228,53,28,ruby 22
+23,custom 23,128,106,69,ruby 23
+24,custom 24,134,108,50,ruby 24
+25,custom 25,128,105,87,ruby 25
+26,custom 26,144,103,76,ruby 26
+27,custom 27,113,117,118,ruby 27
+28,custom 28,137,118,67,ruby 28
+29,custom 29,136,115,91,ruby 29
+30,custom 30,151,109,87,ruby 30
+31,custom 31,208,91,33,ruby 31
+32,custom 32,126,127,75,ruby 32
+33,custom 33,151,122,70,ruby 33
+34,custom 34,150,121,90,ruby 34
+35,custom 35,144,122,104,ruby 35
+36,custom 36,145,131,54,ruby 36
+37,custom 37,161,120,89,ruby 37
+38,custom 38,163,123,100,ruby 38
+39,custom 39,150,133,82,ruby 39
+40,custom 40,216,109,63,ruby 40
+41,custom 41,151,133,114,ruby 41
+42,custom 42,166,133,104,ruby 42
+43,custom 43,165,138,86,ruby 43
+44,custom 44,137,146,152,ruby 44
+45,custom 45,176,135,108,ruby 45
+46,custom 46,166,139,116,ruby 46
+47,custom 47,165,146,101,ruby 47
+48,custom 48,178,141,116,ruby 48
+49,custom 49,157,149,131,ruby 49
+50,custom 50,227,132,57,ruby 50
+51,custom 51,168,150,122,ruby 51
+52,custom 52,179,150,103,ruby 52
+52,custom 52,182,149,112,ruby 52
+53,custom 53,185,155,88,ruby 53
+54,custom 54,181,156,135,ruby 54
+55,custom 55,168,163,146,ruby 55
+56,custom 56,186,161,123,ruby 56
+57,custom 57,167,168,163,ruby 57
+58,custom 58,200,165,114,ruby 58
+59,custom 59,191,165,143,ruby 59
+60,custom 60,184,180,166,ruby 60
+61,custom 61,201,177,158,ruby 61
+62,custom 62,197,193,182,ruby 62
+63,custom 63,211,193,176,ruby 63
+64,custom 64,211,209,200,ruby 64
+65,custom 65,227,216,202,ruby 65
+66,custom 66,223,222,216,ruby 66
+67,custom 67,234,233,228,ruby 67
+68,custom 68,249,249,247,ruby 68
+69,custom 69,28,195,244,ruby 69
+70,black,4,4,5,black
+71,custom 2,41,56,63,lucy 2
+72,custom 3,92,85,78,lucy 3
+73,custom 4,45,118,152,lucy 4
+74,custom 5,125,118,111,lucy 5
+75,custom 6,174,144,113,lucy 6
+76,custom 7,69,178,230,lucy 7
+77,custom 8,162,162,162,lucy 8
+78,custom 9,217,179,140,lucy 9
+79,custom 10,209,209,209,lucy 10
+80,custom 11,248,206,161,lucy 11
+81,white,254,254,254,white
+82,gray2,19,19,19,MLK 2
+83,gray3,27,27,27,MLK 3
+84,gray4,33,33,33,MLK 4
+85,gray5,38,38,38,MLK 5
+86,gray6,43,43,43,MLK 6
+87,gray7,51,51,51,MLK 7
+88,gray8,59,59,59,MLK 8
+89,gray9,67,67,67,MLK 9
+90,gray10,76,76,76,MLK 10
+91,gray11,88,88,88,MLK 11
+92,gray12,102,102,102,MLK 12
+93,gray13,114,114,114,MLK 13
+94,gray14,124,124,124,MLK 14
+95,gray15,135,135,135,MLK 15
+96,gray16,146,146,146,MLK 16
+97,gray17,155,155,155,MLK 17
+98,gray18,166,166,166,MLK 18
+99,gray19,183,183,183,MLK 19
+100,gray20,199,199,199,MLK 20
+101,gray21,211,211,211,MLK 21
+102,gray22,220,220,220,MLK 22
+103,gray23,232,232,232,MLK 23
+104,gray24,250,250,250,MLK 24
+105,custom 1,26,33,11,SUCC 1
+106,custom 2,64,56,36,SUCC 2
+107,custom 3,59,78,35,SUCC 3
+108,custom 4,101,70,64,SUCC 4
+109,custom 5,83,97,55,SUCC 5
+110,custom 6,106,115,81,SUCC 6
+111,custom 7,148,110,112,SUCC 7
+112,custom 8,116,147,100,SUCC 8
+113,custom 9,140,143,116,SUCC 9
+114,custom 10,146,147,138,SUCC 10
+115,custom 11,204,120,156,SUCC 11
+116,custom 12,171,142,142,SUCC 12
+117,custom 13,134,170,130,SUCC 13
+118,custom 14,158,160,158,SUCC 14
+119,custom 15,178,158,172,SUCC 15
+120,custom 16,150,182,149,SUCC 16
+121,custom 17,175,178,150,SUCC 17
+122,custom 18,160,183,165,SUCC 18
+123,custom 19,178,180,174,SUCC 19
+124,custom 20,209,167,181,SUCC 20
+125,custom 21,184,193,192,SUCC 21
+126,custom 22,176,206,172,SUCC 22
+127,custom 23,234,180,213,SUCC 23
+128,custom 24,206,203,191,SUCC 24
+129,custom 25,197,223,202,SUCC 25
+130,custom 26,234,219,228,SUCC 26
+131,black,26,15,12,ww black
+132,custom 2,53,37,31,ww 2
+133,custom 3,88,47,25,ww 3
+134,custom 4,79,64,63,ww 4
+135,custom 5,115,68,41,ww 5
+136,custom 6,117,89,73,ww 6
+137,custom 7,186,65,35,ww 7
+138,custom 8,147,88,51,ww 8
+139,custom 9,107,104,127,ww 9
+140,custom 10,152,109,79,ww 10
+141,custom 11,196,94,44,ww 11
+142,custom 12,150,126,120,ww 12
+143,custom 13,181,124,77,ww 13
+144,custom 14,134,137,179,ww 14
+145,custom 15,210,123,54,ww 15
+146,custom 16,180,138,104,ww 16
+147,custom 17,216,149,64,ww 17
+148,custom 18,147,155,234,ww 18
+149,custom 19,179,156,147,ww 19
+150,custom 20,220,168,88,ww 20
+151,custom 21,193,179,182,ww 21
+152,custom 22,217,180,138,ww 22
+153,custom 23,187,190,233,ww 23
+154,custom 24,229,195,103,ww 24
+155,custom 25,217,201,191,ww 25
+156,custom 26,233,204,156,ww 26
+157,custom 27,211,211,230,ww 27
+158,custom 28,235,217,195,ww 28
+159,custom 29,242,232,220,ww 29
+160,custom 30,250,248,243,ww 30
+161,black,2,1,2,black
+162,custom 2,16,18,25,zebra 2
+163,custom 3,32,29,33,zebra 3
+164,custom 4,28,33,51,zebra 4
+165,custom 5,46,34,27,zebra 5
+166,custom 6,45,42,46,zebra 6
+167,custom 7,47,51,67,zebra 7
+168,custom 8,63,52,47,zebra 8
+169,custom 9,68,66,69,zebra 9
+170,custom 10,69,76,95,zebra 10
+171,custom 11,88,74,64,zebra 11
+172,custom 12,97,91,90,zebra 12
+173,custom 13,112,110,115,zebra 13
+174,custom 14,130,113,100,zebra 14
+175,custom 15,133,128,128,zebra 15
+176,custom 16,142,141,147,zebra 16
+177,custom 17,156,140,127,zebra 17
+178,custom 18,165,160,157,zebra 18
+179,custom 19,189,180,174,zebra 19
+180,custom 20,182,182,186,zebra 20
+181,custom 21,196,194,195,zebra 21
+182,custom 22,205,198,192,zebra 22
+183,custom 23,205,204,207,zebra 23
+184,custom 24,224,223,224,zebra 24
+185,custom 2,212,81,40,LINC 2
+186,custom 4,189,139,54,LINC 4
+187,custom 5,21,82,61,LINC 5
+188,custom 6,199,198,61,LINC 6
+189,custom 7,236,220,64,LINC 7
+190,custom 9,6,137,73,LINC 9
+191,custom 10,88,100,95,LINC 10
+192,custom 11,28,81,107,LINC 11
+193,custom 12,115,126,131,LINC 12
+194,custom 13,16,111,140,LINC 13
+195,custom 14,1,139,179,LINC 14
+196,custom 15,167,182,192,LINC 15
+197,custom 17,186,213,235,LINC 17
+198,custom 18,195,215,235,LINC 18
+199,custom 19,227,234,239,LINC 19
+200,custom 15,130,62,33,Lloyd 15
+201,custom 16,105,78,46,Lloyd 16
+202,custom 17,162,144,46,Lloyd 17
+203,custom 18,138,86,50,Lloyd 18
+204,custom 19,71,76,58,Lloyd 19
+205,custom 20,223,200,63,Lloyd 20
+206,custom 21,167,98,64,Lloyd 21
+207,custom 22,131,96,68,Lloyd 22
+208,custom 23,198,168,72,Lloyd 23
+209,custom 24,38,62,80,Lloyd 24
+210,custom 25,171,120,83,Lloyd 25
+211,custom 26,193,127,93,Lloyd 26
+212,custom 27,172,125,98,Lloyd 27
+213,custom 28,136,125,99,Lloyd 28
+214,custom 29,177,142,100,Lloyd 29
+215,custom 30,56,81,105,Lloyd 30
+216,custom 31,229,212,109,Lloyd 31
+217,custom 32,198,154,113,Lloyd 32
+218,custom 33,89,112,140,Lloyd 33
+219,custom 34,205,176,140,Lloyd 34
+220,custom 35,229,213,157,Lloyd 35
+221,custom 36,117,138,162,Lloyd 36
+222,custom 37,195,186,175,Lloyd 37
+223,custom 38,164,177,188,Lloyd 38
+224,custom 14,228,219,200,Lloyd 14
+
