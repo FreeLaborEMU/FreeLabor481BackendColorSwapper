@@ -37,7 +37,7 @@ public class fileCollector {
         cred=credentials;
     }
 
-    @GetMapping(path = "/downloadV2")
+    @GetMapping(path = "/downloadV3")
     public void DownloadFile() throws ExecutionException, InterruptedException, IOException {
         Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
         BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","files/dogo");
@@ -45,7 +45,7 @@ public class fileCollector {
         //Resource resource= new ClassPathResource("images");
 
         Blob blob= storage.get(blobId);
-        blob.downloadTo(Path.of("C:\\Users\\MGRM\\Documents\\GitHub\\dat"));
+        blob.downloadTo(Path.of("C:\\FreeLabor481BackendColorSwapper\\FreeLabor481BackendColorSwapper\\dat"));
     }
 
 }

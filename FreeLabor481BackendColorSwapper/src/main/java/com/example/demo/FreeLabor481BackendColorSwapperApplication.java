@@ -44,14 +44,6 @@ public class FreeLabor481BackendColorSwapperApplication {
 		}
 		SpringApplication.run(FreeLabor481BackendColorSwapperApplication.class, args);
 
-
-		fileCollector moe = new fileCollector(credentials);
-		Resource resources = new ClassPathResource("files/All_Paint_Mixes.dat");
-		InputStream upload= resources.getInputStream();
-		try {
-			moe.DownloadFile();
-		} catch (ExecutionException e) {
-
 		ImgCollector mo = new ImgCollector(credentials);
 		Resource resource= new ClassPathResource("images/convertedImage.jpg");
 		InputStream upload= resource.getInputStream();
