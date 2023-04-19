@@ -9,8 +9,9 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -187,7 +188,6 @@ public class ImgManager {
 		int imgRed = imgColor.getRed();
 		int imgBlue = imgColor.getBlue();
 		int imgGreen = imgColor.getGreen();
-
 		int palRed = palletColor.getRed();
 		int palBlue = palletColor.getBlue();
 		int palGreen = palletColor.getGreen();
