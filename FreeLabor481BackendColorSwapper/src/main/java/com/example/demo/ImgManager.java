@@ -9,6 +9,9 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -31,6 +34,7 @@ public class ImgManager {
 
 
     public static void main(String[] args) {
+        String url="https://firebasestorage.googleapis.com/v0/b/colorswapper-f6b50.appspot.com/o/images%2Fcheck%2FCopy?alt=media&token=3f300e14-4284-49d0-8846-33ba5dfdcb0e";
         ImgManager manager = new ImgManager();
         Color[][] palleteFromOriginal = manager.getColorArray(manager.originalImg);
         // add a color[] that just removes the dupes for of the  Original Color Array
@@ -101,13 +105,14 @@ public class ImgManager {
     //this class will handle everything related to altering the img
 
     //normal constructor will be called by website Connector after it gets the img
-    public ImgManager(BufferedImage original, Color[] pallet) {
+    public ImgManager( BufferedImage original, Color[] pallet) {
 
-        colorPallet = pallet;
-        originalImg = original;
-        OriginalColorArrayLocations = getColorArray(originalImg);
-        newColorArrayLocations = makeNewColorArrayLocations(colorPallet, OriginalColorArrayLocations);
-        newImg = makeNewImg(originalImg, newColorArrayLocations);
+
+     //   colorPallet = pallet;
+      //  originalImg = original;
+     //   OriginalColorArrayLocations = getColorArray(originalImg);
+     //   newColorArrayLocations = makeNewColorArrayLocations(colorPallet, OriginalColorArrayLocations);
+      //  newImg = makeNewImg(originalImg, newColorArrayLocations);
 
     }
 
@@ -115,16 +120,49 @@ public class ImgManager {
     //also shows example of how BufferdImage wants its information
     public ImgManager() {
         Resource resource = new ClassPathResource("images/Doomguy.jpg");
-        try {
-            File file = resource.getFile();
-            originalImg = ImageIO.read(file);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
 
     }
 
+
+    public static Color[] getColorPalletForUser(Color[][] imgPallet) {
+
+        ArrayList<Color> TempPalletForUser = new ArrayList<Color>();
+
+        Color[] palletForUser;
+
+        // fill out Array list with all the colors
+        for (int i = 0; i < imgPallet.length; i++) {
+            for (int j = 0; j < imgPallet[0].length; j++) {
+                if (imgPallet[i][j] != null) {
+                    TempPalletForUser.add(imgPallet[i][j]);
+                }
+            }
+        }
+
+        // remove dupes, color has its own equals which should be abble to tell if
+        // colors are equal
+        for (int i = 0; i < TempPalletForUser.size(); i++) {
+            for (int j = i + 1; j < TempPalletForUser.size() - 1; j++) {
+
+                if (TempPalletForUser.get(i).equals(TempPalletForUser.get(j))) {
+                    TempPalletForUser.remove(j);
+
+                    // need to add j Loop
+                    // 1 2 5 6
+
+                }
+            }
+
+        }
+        palletForUser = new Color[TempPalletForUser.size()];
+        // turn the array list into a normal array
+        for (int i = 0; i < TempPalletForUser.size(); i++) {
+            palletForUser[i] = TempPalletForUser.get(i);
+        }
+
+        return palletForUser;
+    }
 
     // this method gets the array of color objects that corespond to their location on the img
     // ex pixle 0,0 has color X Y Z
