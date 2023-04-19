@@ -115,14 +115,15 @@ public class ImgCollector {
     public synchronized void Upload(InputStream upload) throws ExecutionException, InterruptedException, IOException {
         if(!Name.equals("done"))
         {
+
             Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
             Firestore db = FirestoreClient.getFirestore();
 
             BlobId blobId=BlobId.of("colorswapper-f6b50.appspot.com","images/"+Name+"/Copy");
             BlobInfo blobInfo= BlobInfo.newBuilder(blobId).setContentType("image/png").build();
-            wait();
+
             Blob uploading =storage.create(blobInfo,upload);
-            notify();
+          System.out.print("OK "+Url);
 
 
         }

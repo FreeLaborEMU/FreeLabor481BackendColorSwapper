@@ -44,6 +44,7 @@ public class ColorConversionDAO {
 		BufferedImage newImg = manager.makeNewImg(clone, palleteForClone);
 
 		displayImage(newImg);
+
 	}
 
 	public static void displayImage(final BufferedImage image) {
