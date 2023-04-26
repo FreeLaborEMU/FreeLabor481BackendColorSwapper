@@ -62,24 +62,13 @@ public class ImgCollector {
             blob[2]=blob[2].substring(0,blob[2].length()-1);
             blob [2]=blob[2].trim();
 
-            if(blob[0].equals("false"))
-            {
-                System.out.println(blob[1] + " | " + blob[2]);
-                Name=blob[2];
-                Url= blob[1];
-                Map<String, Object> data = new HashMap<>();
-                data.put("check",true);
-                data.put("orginal",Url);
-                data.put("username",Name);
-                // other fields can be added in a similar way
-                ApiFuture<WriteResult> result = db.collection("users").document(Name).set(data);
+
+            System.out.println(blob[1] + " | " + blob[2]);
+            Name=blob[2];
+            Url= blob[1];
 
 
-                return blob[1];
-
-
-            }
-
+            return blob[1];
 
         }
 

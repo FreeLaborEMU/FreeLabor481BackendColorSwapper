@@ -9,6 +9,7 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -105,4 +106,20 @@ public class ColorPaletteController {
         this.rgbValues = rgbValues;
     }
 
+    public Color[] retrieveLocalPalette() {
+        Color[] list = new Color[0];
+        try {
+            ArrayList<RGBValues> rgbValues = storeRGBValues();
+            list = new Color[rgbValues.size()];
+            for(int i=0; i< rgbValues.size(); i++){
+                RGBValues color = rgbValues.get(i);
+                Color realColor = new Color(color.getRedValue(), color.getGreenValue(), color.getBlueValue());
+                list[i] = realColor;
+                System.out.println(realColor.getRed());
+            }
+            return list;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

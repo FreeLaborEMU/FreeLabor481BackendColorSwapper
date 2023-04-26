@@ -50,8 +50,8 @@ public class FreeLabor481BackendColorSwapperApplication {
 		SpringApplication.run(FreeLabor481BackendColorSwapperApplication.class, args);
 
 		ImgCollector firefiles = new ImgCollector(credentials);
-		Resource resource= new ClassPathResource("images/convertedImage.jpg");
-		InputStream upload= resource.getInputStream();
+		//Resource resource= new ClassPathResource("images/convertedImage.jpg");
+		//InputStream upload= resource.getInputStream();
 
 
 
@@ -114,6 +114,7 @@ public class FreeLabor481BackendColorSwapperApplication {
 		InputStream ok= new ByteArrayInputStream(os.toByteArray());
 		try {
 			firefiles.Upload(ok);
+			//firefiles.DownloadV2();
 		} catch (ExecutionException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
