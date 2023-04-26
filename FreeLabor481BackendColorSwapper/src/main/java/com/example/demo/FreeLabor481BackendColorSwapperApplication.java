@@ -37,13 +37,16 @@ public class FreeLabor481BackendColorSwapperApplication {
 
 	public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 		SpringApplication.run(FreeLabor481BackendColorSwapperApplication.class, args);
-
+			convert();
 	}
+
+	// Create a firebase instance and get files from fireebase
 
 	@GetMapping(path = "/convert")
 	static String convert() throws IOException, ExecutionException, InterruptedException {
 
 		// Use a service account	localhost:8080/colorPalette/upload
+		//Creat firebase instance
 		InputStream serviceAccount = new FileInputStream("./colorswapper-firebase.json");
 		GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
 		FirebaseOptions options = new FirebaseOptions.Builder()
@@ -63,14 +66,16 @@ public class FreeLabor481BackendColorSwapperApplication {
 			FirebaseApp.initializeApp(options);
 		}
 
-
-
+		// Get the color pallet
+		ColorConversionDAO color =new ColorConversionDAO();
 		ImgCollector firefiles = new ImgCollector();
 		firefiles.setCredentials(credentials);
+
+		// Get images
 		String url;
 		url = firefiles.Download();
 
-
+        firefiles.DownloadV2();
 		System.out.print(url);
 		ImgManager manager = new ImgManager();
 
@@ -88,59 +93,7 @@ public class FreeLabor481BackendColorSwapperApplication {
 		Color[][] palleteFromOriginal = manager.getColorArray(manager.getOriginalImg());
 		// add a color[] that just removes the dupes for of the  Original Color Array
 		//so Prof can see the array of original colors in img and the new colors side by side
-		Color[] palleteFromWebsite = new Color[16];
-
-		//update instead of 0-255 it wants 0-1 where 1=255
-		// also it NEEDS to be spesifed that its a float for some reson
-		//
-		palleteFromWebsite[0] = new
-
-				Color((float) 0.0, (float) 0.0, (float) 1.0);
-		palleteFromWebsite[1] = new
-
-				Color((float) 0.0, (float) 1.0, (float) 0.0);
-		palleteFromWebsite[2] = new
-
-				Color((float) 1.0, (float) 0.0, (float) 0.0);
-		palleteFromWebsite[3] = new
-
-				Color((float) 0.0, (float) 0.0, (float) 0.0);
-		palleteFromWebsite[4] = new
-
-				Color((float) 0.0, (float) 0.5, (float) 0.0);
-		palleteFromWebsite[5] = new
-
-				Color((float) 0.5, (float) 0.0, (float) 0.0);
-		palleteFromWebsite[6] = new
-
-				Color((float) 0.5, (float) 0.5, (float) 0.5);
-		palleteFromWebsite[7] = new
-
-				Color((float) 0.0, (float) 0.0, (float) 0.5);
-		palleteFromWebsite[8] = new
-
-				Color((float) 0.0, (float) 0.5, (float) 0.0);
-		palleteFromWebsite[9] = new
-
-				Color((float) 1.0, (float) 1.0, (float) 1.0);
-		palleteFromWebsite[10] = new
-
-				Color((float) 0.0, (float) 0.6, (float) 0.0);
-		palleteFromWebsite[11] = new
-
-				Color((float) 0.0, (float) 0.7, (float) 0.0);
-		palleteFromWebsite[12] = new
-
-				Color((float) 0.0, (float) 0.8, (float) 0.0);
-		palleteFromWebsite[13] = new
-
-				Color((float) 0.6, (float) 0.6, (float) 0.0);
-		palleteFromWebsite[14] = new
-
-				Color((float) 0.7, (float) 0.7, (float) 0.0);
-		palleteFromWebsite[15] = new
-
-				Color((float) 0.8, (float) 0.8, (float) 0.0);
+		Color[] palleteFromWebsite = color.retrieveLocalPalette();
 		Color[][] palleteForClone = manager.makeNewColorArrayLocations(palleteFromWebsite, palleteFromOriginal);
 		BufferedImage clone = ImgManager.clone(manager.getOriginalImg());
 		BufferedImage newImg = manager.makeNewImg(clone, palleteForClone);

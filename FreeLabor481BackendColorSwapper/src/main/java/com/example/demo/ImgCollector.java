@@ -40,15 +40,12 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping(path = "/imgCollector")
 public class ImgCollector {
 
-    private String Name;
+
     private String Url;
 
 
     private GoogleCredentials cred;
 
-  //  public ImgCollector(GoogleCredentials credentials) {
-  //    cred=credentials;
-    //}
 
     public void setCredentials(GoogleCredentials credentials) {
         cred = credentials;
@@ -79,7 +76,7 @@ public class ImgCollector {
 
 
                 System.out.println(blob[1] + " | " + blob[2]);
-                Name=blob[2];
+
                 Url= blob[1];
 
 
@@ -97,28 +94,23 @@ public class ImgCollector {
     }
 
 
-
+    // Get index file and store inside All_Paint_Mix.dat
     @GetMapping(path = "/downloadV2")
     public void DownloadV2() throws ExecutionException, InterruptedException, IOException {
         Storage storage = StorageOptions.newBuilder().setCredentials(cred).build().getService();
         BlobId blobId= BlobId.of("colorswapper-f6b50.appspot.com","files/dogo");
-        //  storage.downloadTo(blobId,);
 
-        Resource resource= new ClassPathResource("images");
-       // InputStream file= ;
-
-       // Path check =();
         Blob blob= storage.get(blobId);
-        blob.downloadTo(Path.of("C:\\FreeLabor481BackendColorSwapper\\FreeLabor481BackendColorSwapper\\dat"));
-    //    System.out.print(check);
+        blob.downloadTo(Paths.get("All_Paint_Mixes.dat"));
 
-       //
+
+
 
 
 
     }
 
-
+   // Sends out to firebase
     @GetMapping(path = "/upload")
     public synchronized void Upload(InputStream upload) throws ExecutionException, InterruptedException, IOException {
 
